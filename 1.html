@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        My First Apps
+    </title>
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div id="app-2">
+                <span v-bind:title="message">
+                Hover your mouse over me
+            </span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+            <div id="app-3">
+                <span v-if="seen">
+                    Now you see me
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div id="app-4">
+                <ol>
+                    <li v-for="obj in list">
+                        {{obj.text}}
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div id="app-5">
+                <p>{{message}}</p>
+                <button v-on:click="reverseMessage">reverseMessage</button>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div id="app-6">
+                <p>{{message}}</p>
+                <input type="text" name="" id="" v-model="message">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <ol>
+                <todo-item></todo-item>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div id="app-7">
+                <ol>
+                    <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id">
+                    </todo-item>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Bambang T. Lasiman'
+            }
+        });
+
+        var app2 = new Vue({
+            el: '#app-2',
+            data: {
+                message: 'You loaded this page' + new Date().toLocaleString()
+            }
+        })
+
+        var app3 = new Vue({
+            el: '#app-3',
+            data: {
+                seen: true
+            }
+        })
+
+        var app4 = new Vue({
+            el: '#app-4',
+            data: {
+                list: [{
+                    text: 'Learn Javascript'
+                }, {
+                    text: 'Learn Vue'
+                }, {
+                    text: 'Build some awsome web apps '
+                }]
+            }
+        })
+
+        var app5 = new Vue({
+            el: '#app-5',
+            data: {
+                message: "Hello Bambang T. Lasiman"
+            },
+            methods: {
+                reverseMessage: function() {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        })
+
+        var app6 = new Vue({
+            el: '#app-6',
+            data: {
+                message: "Hello Vue"
+            }
+        })
+
+
+
+        Vue.component('todo-item', {
+            props: ['todo'],
+            template: '<li>{{todo.text}}</li>'
+        })
+
+        var app7 = new Vue({
+            el: '#app-7',
+            data: {
+                groceryList: [{
+                    id: 0,
+                    text: 'Vegetables'
+                }, {
+                    id: 1,
+                    text: 'Cheese'
+                }, {
+                    id: 2,
+                    text: 'Tomatos'
+                }, {
+                    id: 3,
+                    text: 'Whatever else '
+                }, ]
+            }
+        })
+    </script>
+
+
+    <!-- Add Vue and Bootstrap-Vue JS just before the closing </body> tag -->
+    <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+</body>
+
+</html>
